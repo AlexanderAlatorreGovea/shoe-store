@@ -28,13 +28,8 @@ app.listen(PORT, () => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));;
-
-  app.get('*', function (req, res) {
-    res.sendFile(path.join('../build', 'index.html'));
-  });
+    app.use(express.static('client/build'));
 }
-
 
 //THIS MIDDLEWARE HANDLES PROMISE REJECTION
 process.on('unhandledRejection', err => {

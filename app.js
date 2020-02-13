@@ -36,6 +36,14 @@ if (process.env.NODE_ENV = 'development') {
   app.use(morgan('dev'));
 }
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //BODY PARSER OR READING DATA FROM THE BODY INTO REQ.BODY
@@ -71,10 +79,10 @@ app.post('/payment', (req, res) => {
   });
 });
  
-app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
+//app.all('*', (req, res, next) => {
+  //next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+//});
 
-app.use(globalErrorHandler);
+//app.use(globalErrorHandler);
 
 module.exports = app;
