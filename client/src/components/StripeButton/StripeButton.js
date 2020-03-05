@@ -16,14 +16,14 @@ const StripeButton = ({ price, isAuthenticated }) => {
 
     const onToken = token => {
         axios({
-            url: 'payment',
+            url: '/payment',
             method: 'POST',
             data: {
                 amount: priceForStripe,
                 token: token 
             }
         })
-        .then(response => {
+        .then(res => {
             showAlert('success', 'succesful payment');
         })
         .catch(error => {

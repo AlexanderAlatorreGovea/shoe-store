@@ -26,12 +26,12 @@ class RegisterPage extends Component {
     }
 
     componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+        const { error, isAuthenticated } = this.props;
 
-    if (isAuthenticated) {
-        this.redirect();
+        if (isAuthenticated) {
+            this.redirect();
+        }
     }
-  }
 
     onChange = e => {
         const { name, value } = e.target;

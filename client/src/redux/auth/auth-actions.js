@@ -26,7 +26,7 @@ export const forgotPassword = ({ email }) => dispatch => {
   const body = JSON.stringify({ email });
 
   axios
-    .post('http://localhost:4000/api/v1/auth/forgotPassword', body, config, { timeout: 1.2 })
+    .post('/api/v1/auth/forgotPassword', body, config, { timeout: 1.2 })
     .then(res => {
       dispatch({
         type: PASSWORD_RETRIEVAL_SUCCESS,
@@ -57,7 +57,7 @@ export const register = ({ email, password, passwordConfirm, name }) => dispatch
   const body = JSON.stringify({ email, password, passwordConfirm, name });
 
   axios
-    .post('http://localhost:4000/api/v1/auth/signup', body, config, { timeout: 1.2 })
+    .post('/api/v1/auth/signup', body, config, { timeout: 1.2 })
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -95,7 +95,7 @@ export const login = ({ email, password }) => dispatch => {
   }); 
 
   axios
-    .post('http://localhost:4000/api/v1/auth/login', body, config)
+    .post('/api/v1/auth/login', body, config)
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -121,7 +121,7 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:4000/api/v1/auth/logout'
+      url: '/api/v1/auth/logout'
     });
     if (res.data.status = 'success')  {
         window.location.reload();

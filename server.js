@@ -21,15 +21,13 @@ mongoose
     console.log('connected to Mongodb');
   });
 
-const PORT = process.env.PORT || 4000;
+require("dotenv").config();
+ 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Listening on port ${PORT}`);
 });
-
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-}
 
 //THIS MIDDLEWARE HANDLES PROMISE REJECTION
 process.on('unhandledRejection', err => {

@@ -58,7 +58,7 @@ app.use(xss());
 
 //serving static files
 app.use(compression());
-
+ 
 // 3) ROUTES
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/auth', authRouter);

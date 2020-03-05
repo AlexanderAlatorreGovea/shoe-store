@@ -4,17 +4,17 @@ import axios from 'axios';
 
 class checkboxes extends Component {
     constructor(props) {
-    super(props);
-    this.state = {
-        items: [],
-        allCategories: ['nike', 'Dolce & Gabbana', 'adidas'],
-        selectedCategory: ['nike']
+        super(props);
+        this.state = {
+            items: [],
+            allCategories: ['nike', 'Dolce & Gabbana', 'adidas'],
+            selectedCategory: ['nike']
+        }
     }
-}
 
     componentDidMount() {
         axios
-            .get('http://localhost:4000/api/v1/products')
+            .get('/api/v1/products')
             .then((res) => {
                 let items = res.data.data.data;
                 this.setState({

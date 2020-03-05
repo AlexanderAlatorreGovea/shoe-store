@@ -45,7 +45,7 @@ class domiFilter extends Component {
         const { min_price, max_price,sort } = queryParams;
         if(queryParams.min_price != undefined) {
             axios
-            .get(`http://localhost:4000/api/v1/products?min_price=${min_price}&max_price=${max_price}&sort=${sort}`)
+            .get(`/api/v1/products?min_price=${min_price}&max_price=${max_price}&sort=${sort}`)
             .then((res, req) => {
                 // let city = res.data.data.data.filter((item) => {
                 //     return item.routeName == match.params.selectedCity
@@ -61,7 +61,7 @@ class domiFilter extends Component {
             })
         } else {
             axios
-            .get('http://localhost:4000/api/v1/products')
+            .get('/api/v1/products')
             .then((res, req) => {
                 // let city = res.data.data.data.filter((item) => {
                 //     return item.routeName == match.params.selectedCity
@@ -109,7 +109,7 @@ class domiFilter extends Component {
     
         if(queryParams.min_price != undefined) {
             axios
-            .get(`http://localhost:4000/api/v1/products?min_price=${queryParams.min_price}&max_price=${queryParams.max_price}&sort=${queryParams.sort}`)
+            .get(`/api/v1/products?min_price=${queryParams.min_price}&max_price=${queryParams.max_price}&sort=${queryParams.sort}`)
             .then((res, req) => {
                 // let city = res.data.data.data.filter((item) => {
                 //     return item.routeName == match.params.selectedCity
