@@ -4,9 +4,14 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
+// const DB = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD
+// );
+
 const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
+  '<NEW_DATABASE_PASSWORD>',
+  process.env.NEW_DATABASE_PASSWORD
 );
 
 mongoose
@@ -22,7 +27,7 @@ mongoose
   });
 
 require("dotenv").config();
- 
+  
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
