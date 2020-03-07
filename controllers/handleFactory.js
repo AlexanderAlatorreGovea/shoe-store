@@ -71,7 +71,7 @@ exports.getAll = Model =>
   // To allow for nested GET reviews on tour (hack)
   let filter = {};
   if (req.params.productId) filter = { product: req.params.productId };
-  console.log(req.query)
+
   const features = new APIFeatures(Model.find(filter), req.query)
     .filter()
     .sort()
