@@ -214,8 +214,6 @@ class Products extends React.Component {
       indexOfLastProduct
     ); 
     const { location } = this.props;
-    console.log('this.selectedCheckboxes', this.selectedCheckboxes)
-    console.log('this.state.filteredProducts', this.state.filteredProducts)
     return (
         <div className="content-area products-all-page">
             <div  

@@ -61,7 +61,6 @@ class LoginPage extends Component {
     render() {
         const { isLoading } = this.props;
         const { loading } = this.state;
-        console.log(this.props.error)
         return ( 
             <section className="content-area login_register-page">
                 <div className="container">

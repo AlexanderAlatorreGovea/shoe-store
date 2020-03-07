@@ -38,7 +38,6 @@ const StripeButton = ({ price, isAuthenticated }) => {
                 return;
     }
 
-    console.log(isAuthenticated)
     return (
         <div>
             {isAuthenticated ?

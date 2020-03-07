@@ -49,7 +49,6 @@ class Header extends Component {
     render() {
         const { toggleCart, isTablet } = this.state;
         const { itemCount, total } = this.props;
-        console.log(this.props.authenticated.some((value) => value))
         const isAuthenticated = this.props.authenticated.some((value) => value)
         return (
             <div style={{ margin: '0 auto' }}>
