@@ -14,20 +14,11 @@ const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
-//mongodb://alexander_alatore:Freshman123.@ds359868.mlab.com:59868/heroku_w3q5crd8
-// // mongoose
-// //   .connect(DB, {
-// //     useNewUrlParser: true,
-// //     useCreateIndex: true, 
-// //     useUnifiedTopology: true,
-// //     useFindAndModify: false
-// //   })
-// //   .then(() => console.log('DB connection successful!'));
 
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://alexander_alatore:Freshman123.@ds359868.mlab.com:59868/heroku_w3q5crd8", {
+  .connect(DB, {
     useNewUrlParser: true,
-    useCreateIndex: true,
+    useCreateIndex: true, 
     useUnifiedTopology: true,
     useFindAndModify: false
   })
