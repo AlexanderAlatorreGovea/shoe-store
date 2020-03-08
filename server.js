@@ -25,7 +25,7 @@ const DB = process.env.DATABASE.replace(
 // //   .then(() => console.log('DB connection successful!'));
 
 mongoose
-  .connect("mongodb://alexander_alatore:Freshman123.@ds359868.mlab.com:59868/heroku_w3q5crd8", {
+  .connect(process.env.MONGO_URI || "mongodb://alexander_alatore:Freshman123.@ds359868.mlab.com:59868/heroku_w3q5crd8", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
