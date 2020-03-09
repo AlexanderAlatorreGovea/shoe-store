@@ -44,6 +44,4 @@ process.on('SIGTERM', () => {
   });
 });
 
-console.log(process.env.MONGO_ATLAS_PW);
-console.log(process.env.MONGODB_URI);
 
