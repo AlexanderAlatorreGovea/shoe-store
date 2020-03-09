@@ -14,8 +14,6 @@ const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
-mongodb://Alexander_alatorre:Freshman123.@ds015403.mlab.com:15403/heroku_862m9hg3
-mongodb://heroku_862m9hg3:<dbpassword>@ds015403.mlab.com:15403/heroku_862m9hg3
 
 mongoose
   .connect(process.env.MONGODB_URI || DB, {
@@ -47,3 +45,5 @@ process.on('SIGTERM', () => {
 });
 
 console.log(process.env.MONGO_ATLAS_PW);
+console.log(process.env.MONGODB_URI);
+
