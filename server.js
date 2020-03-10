@@ -17,11 +17,12 @@ const DB = process.env.DATABASE.replace(
 
 mongoose
   .connect('mongodb+srv://alexandergovea19:Freshman123.@cluster0-yyfkd.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: false,
+    useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useUnifiedTopology: true
   })
-  .then(() => console.log('DB connection successful!'));
+  .then(() => console.log('DB connection successful!'))
+  .catch(err => console.log(err));
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
