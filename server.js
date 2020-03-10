@@ -16,7 +16,7 @@ const DB = process.env.DATABASE.replace(
 );
 
 mongoose
-  .connect('mongodb+srv://alexandergovea19:Freshman123.@cluster0-yyfkd.mongodb.net/test?retryWrites=true&w=majority', {
+  .connect('mongodb+srv://alexandergovea19:Freshman123.@cluster0-yyfkd.mongodb.net', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
