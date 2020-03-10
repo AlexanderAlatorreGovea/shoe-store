@@ -37,10 +37,10 @@ if (process.env.NODE_ENV = 'development') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.use(express.static(path.join(__dirname, '/client/build')));
 
   app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
 }
 
@@ -78,11 +78,5 @@ app.post('/payment', (req, res) => {
     }
   });
 });
- 
-//app.all('*', (req, res, next) => {
-  //next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-//});
-
-//app.use(globalErrorHandler);
 
 module.exports = app;
