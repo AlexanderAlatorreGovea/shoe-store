@@ -15,7 +15,7 @@ const cors = require('cors');
 const productRouter = require('./routes/productRoutes');
 const authRouter = require('./routes/authRoutes');
 const globalErrorHandler = require('./controllers/errorController');
-
+const client = require('/client/build/index.html')
 const app = express();
 
 app.use(cors());
@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')));
 
   app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '/client/build', '/index.html'));
   });
 }
 
