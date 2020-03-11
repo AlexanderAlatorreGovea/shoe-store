@@ -36,12 +36,18 @@ if (process.env.NODE_ENV = 'development') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
+    if (err) {
+      res.send(err)
+      console.log(err)
+    }
+  });
 
-  app.get('*', (req, res) => {
+  app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
       if (err) {
-        res.status(500).send(err)
+        res.send(err)
+        console.log(err)
       }
     })
   });
