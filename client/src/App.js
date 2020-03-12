@@ -29,7 +29,7 @@ class App extends React.Component {
         <ScrollToTop />
         <Header/>
         <Switch>
-          <Route exact path="https://freshgear.herokuapp.com/" component={ LandingPage }/>
+          <Route exact path="/https://freshgear.herokuapp.com" component={ LandingPage }/>
           <Route  exact path="/about" component={ AboutPage }/>
           <Route  exact path="/products" component={ Products }/>
           <Route  exact strict path="/products/:product" component={ ProductPage }/>
