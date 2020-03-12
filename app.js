@@ -36,7 +36,7 @@ if (process.env.NODE_ENV = 'development') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
+  app.use(('/'), express.static(path.join(__dirname, 'client/build')), function (err) {
     if (err) {
       res.send(err)
       console.log(err)
