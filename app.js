@@ -36,7 +36,7 @@ if (process.env.NODE_ENV = 'development') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(('/'), express.static(path.join(__dirname, 'client/build')), function (err) {
+  app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
     if (err) {
       res.send(err)
       console.log(err)
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
+    res.sendFile(('/'), path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
       if (err) {
         res.send(err)
         console.log(err)
@@ -52,6 +52,7 @@ if (process.env.NODE_ENV === 'production') {
     })
   });
 }
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //BODY PARSER OR READING DATA FROM THE BODY INTO REQ.BODY
@@ -61,7 +62,6 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 //DATA SANITIZATION against no sql query injection
 app.use(mongoSanitize());
 
-// Data sanitization against XSS
 app.use(xss());
 
 //serving static files
