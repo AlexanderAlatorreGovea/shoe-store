@@ -133,13 +133,6 @@
           width: 100%;
         }
       }
-      // #input {
-      //   clip: rect(1px,1px,1px,1px);
-      //   height: 1px;
-      //   overflow: hidden;
-      //   position: absolute!important;
-      //   width: 1px;
-      // }
       .price {
         display: grid;
         grid-template-columns: 50% 50%;
@@ -320,14 +313,6 @@
   list-style-type: none;
   text-align: center;
 }
-
-// input #input {
-//     clip: rect(1px,1px,1px,1px);
-//     height: 15px;
-//     overflow: hidden;
-//     position: absolute !important;
-//     width: 1px;
-// }
 
 .tile-content {
   min-width: 55px;

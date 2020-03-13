@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fa6e339f.chunk.css",
+    "main.js": "/static/js/main.8a05ed10.chunk.js",
+    "main.js.map": "/static/js/main.8a05ed10.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.4f3d2d87.js",
+    "runtime~main.js.map": "/static/js/runtime~main.4f3d2d87.js.map",
+    "static/js/2.33bb4117.chunk.js": "/static/js/2.33bb4117.chunk.js",
+    "static/js/2.33bb4117.chunk.js.map": "/static/js/2.33bb4117.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3bf7c3e6f1ae80a9f769a61d914f0a75.js": "/precache-manifest.3bf7c3e6f1ae80a9f769a61d914f0a75.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.fa6e339f.chunk.css.map": "/static/css/main.fa6e339f.chunk.css.map",
+    "static/media/adidas-yeezy-boost-350-white.png": "/static/media/adidas-yeezy-boost-350-white.edaae9ae.png"
+  }
+}
