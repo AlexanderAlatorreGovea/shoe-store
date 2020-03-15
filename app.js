@@ -37,21 +37,27 @@ app.use(helmet());
 
 app.use(morgan('dev'));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
-    if (err) {
-      res.send(err)
-    }
-  });
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
+//     if (err) {
+//       res.send(err)
+//     }
+//   });
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
-      if (err) {
-        res.send(err)
-      }
-    })
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
+//       if (err) {
+//        res.send(err)
+//       }
+//     })
+//   });
+// }
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
