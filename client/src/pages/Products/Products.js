@@ -214,6 +214,9 @@ class Products extends React.Component {
       indexOfLastProduct
     ); 
     const { location } = this.props;
+    console.log('https://freshgearapp.herokuapp.com/api/v1/products')
+    console.log('/api/v1 / products')
+    console.log(this.state.products)
     return (
         <div className="content-area products-all-page">
             <div  
