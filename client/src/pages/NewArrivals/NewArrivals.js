@@ -18,7 +18,7 @@ export default class NewArrivals extends Component {
 
     componentWillMount() {
         axios
-            .get('/api/v1/products')
+            .get('https://freshgearapp.herokuapp.com/api/v1/products')
             .then((res) => {
                 this.setState({
                     products: res.data.data.data,
