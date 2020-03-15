@@ -51,6 +51,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+console.log(process.env.NODE_ENV)
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //BODY PARSER OR READING DATA FROM THE BODY INTO REQ.BODY
@@ -84,5 +86,7 @@ app.post('/payment', (req, res) => {
     }
   });
 });
+
+console.log(process.env.NODE_ENV)
 
 module.exports = app;
