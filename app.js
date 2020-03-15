@@ -26,8 +26,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.options('*', cors());
 
-//app.use(express.static(path.join(__dirname, 'public')));
-
 // Set security HTTP headers
 app.use(helmet());
  
@@ -53,10 +51,22 @@ app.use(morgan('dev'));
 //   });
 // }
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
+  if (err) {
+    res.send(err)
+    console.log(res)
+    console.log(req)
+  }
+});
 
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
+    if (err) {
+     res.send(err)
+     console.log(res)
+     console.log(req)
+    }
+  })
 });
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -67,7 +77,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 //DATA SANITIZATION against no sql query injection
 app.use(mongoSanitize());
-
+ 
 app.use(xss());
 
 //serving static files
