@@ -42,7 +42,7 @@ class Products extends React.Component {
 
     componentDidMount () {
         axios
-            .get('https://freshgearapp.herokuapp.com/api/v1/products')
+            .get('http://localhost:5000/api/v1/products')
             .then((res) => {
                 let products = res.data.data.data;
                 this.setState({
