@@ -51,20 +51,6 @@ app.use(morgan('dev'));
 //   });
 // }
 
-app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
-  if (err) {
-    res.send(err)
-  }
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
-    if (err) {
-     res.send(err)
-    }
-  })
-});
-
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //BODY PARSER OR READING DATA FROM THE BODY INTO REQ.BODY
@@ -97,6 +83,20 @@ app.post('/payment', (req, res) => {
       res.status(200).send({ success: stripeRes })
     }
   });
+});
+
+app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
+  if (err) {
+    res.send(err)
+  }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
+    if (err) {
+      res.send(err)
+    }
+  })
 });
 
 module.exports = app;
