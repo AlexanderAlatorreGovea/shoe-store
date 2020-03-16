@@ -10,7 +10,7 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
-const favicon = require('express-favicon');
+const bodyParser = require('body-parser')
 
 const productRouter = require('./routes/productRoutes');
 const authRouter = require('./routes/authRoutes');

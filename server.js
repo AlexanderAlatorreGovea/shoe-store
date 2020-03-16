@@ -27,7 +27,12 @@ mongoose
 //const port = process.env.PORT || 4000;
 const port = process.env.PORT;
 
-const server = app.listen(port, () => {
+//added body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const server = app.listen(port, error => {
+  if (error) throw error;
   console.log(`App running on port ${port}...`);
 });
 
