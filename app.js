@@ -54,8 +54,6 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
   if (err) {
     res.send(err)
-    console.log(res)
-    console.log(req)
   }
 });
 
@@ -63,8 +61,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
     if (err) {
      res.send(err)
-     console.log(res)
-     console.log(req)
     }
   })
 });
