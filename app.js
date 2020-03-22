@@ -85,11 +85,11 @@ app.post('/payment', (req, res) => {
   });
 });
 
-if (process.env.NODE_ENV = 'development') {
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV = 'development') {
+//   app.use(morgan('dev'));
+// }
 
-if (process.env.NODE_ENV === 'production') {
+//if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
     if (err) {
       res.send(err)
@@ -103,6 +103,6 @@ if (process.env.NODE_ENV === 'production') {
       }
     })
   });
-}
+//}
 
 module.exports = app;
