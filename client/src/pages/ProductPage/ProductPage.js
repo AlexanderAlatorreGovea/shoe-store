@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
+
+import { showAlert } from '../../redux/utils/alerts'; 
 import { addItem } from '../../redux/cart/cart-actions';
 
 import './ProductPage.scss';
@@ -12,12 +14,16 @@ class ProductPage extends Component {
             sizeQuantity: 0, 
             chosenSize: [],
 
-            afterState: '',
+            afterState: '', 
 
             newState: [],
-            list: []
+            list: [],
+            focusCart: false,
+            focusSize: true,
         };
-    }
+        this.buttonRef = React.createRef();
+        this.optionRef = React.createRef();
+    } 
       
    
 
@@ -200,10 +206,6 @@ class ProductPage extends Component {
         )
     };
 
-    componentDidMount () {
-        this.seenItems = [];
-    }
-
     onColtSteele = (products, product, delta) => {   
         // // addItem = (weight, benefit, itemName) => {
         // //     this.setState(prevState => ({
@@ -259,6 +261,12 @@ class ProductPage extends Component {
         this.map = new Map();
         this.result = [];
     }
+
+    componentDidMount() {
+        this.seenItems = [];
+    }
+
+
  
     newFunct = (array, index, newItem, delta) => {
         //const result = [...this.state.chosenSize, {...newItem, addedSize: 1 }];
@@ -277,7 +285,7 @@ class ProductPage extends Component {
         // //             chosenSize: prevState.chosenSize.map(item =>({
         // //                 ...item, 
         // //                 addedSize: item.addedSize + 1
-        // //             }))
+        // //             })) 
         // //         }))
         // //     }
         // // }
@@ -298,13 +306,53 @@ class ProductPage extends Component {
     }
 
     updateSize = (prod, idx, arr) => {
-        [this.props.location.state.item].map((item) => {
+        const { item } = this.props.location.state;
+
+        [item].map((item) => {
             return item.chosenSize.push(prod)
         });
         
         this.forceUpdate();
         
-        return this.props.location.state.item
+        return item
+    }  
+
+    errorMessage = (product) => {
+        if (product.stock === 0) {
+            showAlert('error', 'This item is out of stock.');
+        } else if (product.size !== null || undefined) {
+
+            const addToCartBtn = this.buttonRef.current;
+
+            //addToCartBtn.style.backgroundColor = "#a41d23";
+            addToCartBtn.classList.add("focus-button");
+
+            this.setState({
+                focusCart: true
+            })
+        } 
+    }
+
+    componentWillReceiveProps() {
+        const sizes = document.querySelectorAll('#size-option');
+        const addToCartBtn = this.buttonRef.current;
+
+        if (this.props.cartItems[0] !== undefined || null) {
+            if (this.props.cartItems[0].chosenSize.length === 0 ) {
+                sizes.forEach((e) => {
+                    e.classList.remove("focus-option")
+                })
+                addToCartBtn.classList.remove("focus-button");
+            }
+        }
+    }
+
+    reFocusSize = (product, idx) => { 
+        const sizes = document.querySelectorAll('#size-option');
+
+        if (this.props.location.state.item.chosenSize.length !== 0) {
+            sizes[idx].classList.add("focus-option");
+        } 
     }
 
     render() {
@@ -312,7 +360,6 @@ class ProductPage extends Component {
         const { addItem } = this.props;
         const  inStock = item.stock;
         const { chosenSize } = this.state;
-        console.log(this.props.location.state.item)
         return (
             <div className="content-area product-single-page">
                 <div className="product-imgs">
@@ -379,11 +426,13 @@ class ProductPage extends Component {
                                         {inStock.map((prod, idx, arr) => {
                                             return (
                                                 <option
+                                                    ref={this.optionRef} 
+                                                    key={idx}
+                                                    id='size-option'
                                                     value={prod.size}
-                                                    //onClick={() => this.newFunct(arr, idx, prod)}
-                                                    onClick={() => this.updateSize(prod, idx, arr)}
-                                                    className={ prod.stock === 0 ? 'inactive-category' : '' }
-                                                    style={{display: 'flex', padding: '20px', background: '#ecf0f3', color: '#484c4f' ,  flexWrap: 'wrap', margin: '3px', cursor: 'pointer', width: '100%' }}>
+                                                    onClick={(e) => { this.updateSize(prod, idx, arr); this.errorMessage(prod); this.reFocusSize(prod, idx, e.target.value);}}
+                                                    className={prod.stock === 0 ? 'inactive-category' : `${prod.size}` }
+                                                >
                                                     {prod.size}
                                                 </option>                                  
                                         )})}
@@ -393,7 +442,11 @@ class ProductPage extends Component {
                         </div>
                     </div>  
 
-                    <button onClick={() => addItem({...item})} className="add-to-cart-btn">
+                    <button 
+                        ref={this.buttonRef} 
+                        onClick={() => addItem({...item})} 
+                        className="add-to-cart-btn"
+                    >
                         add to cart
                     </button>
                 </div>
@@ -402,12 +455,15 @@ class ProductPage extends Component {
         )
     }
 };
-
+ 
 const mapDispatchToProps = dispatch => ({
     addItem: ({...item}) => dispatch(addItem({...item}))
 });
 
+const mapStateToProps = ({ cart: { cartItems } }) => ({
+    cartItems
+});
 
-export default connect(null, mapDispatchToProps)(ProductPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
  
 

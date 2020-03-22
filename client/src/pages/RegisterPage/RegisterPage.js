@@ -89,6 +89,12 @@ class RegisterPage extends Component {
                                         onChange={this.onChange} 
                                         minlength='8'>
                                     </input>
+                                    <input
+                                        type="password" name="passwordConfirm"
+                                        placeholder="Confirm Password"
+                                        onChange={this.onChange}
+                                        minlength='8'>
+                                    </input>   
                                     <input 
                                         style={{ marginBottom: '10px' }}
                                         className="input"
@@ -97,13 +103,7 @@ class RegisterPage extends Component {
                                         placeholder="name"
                                         onChange={this.onChange} 
                                         minlength='8'>
-                                    </input>
-                                    <input 
-                                        type="password" name="passwordConfirm" 
-                                        placeholder="Confirm Password"
-                                        onChange={this.onChange} 
-                                        minlength='8'> 
-                                    </input>                    
+                                    </input>                 
                                 </div>
                             <button 
                                 id="register-button"
@@ -116,7 +116,7 @@ class RegisterPage extends Component {
                         <div className="line"></div>
                         
                         <div className="footer">
-                            already have an account? <Link  to="login">Login</Link >
+                            already have an account? <Link  to="/login">Login</Link >
                         </div>
                     </div>
                 </div>

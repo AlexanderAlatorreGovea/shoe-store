@@ -13,12 +13,12 @@ export default class ChangePassword extends Component {
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
-    };
+    }; 
 
     onSubmit = e => {
         e.preventDefault();
 
-        const URL = `/api/v1/auth/resetPassword/${this.props.match.params.id}`
+        const URL = `http://localhost:4000/api/v1/auth/resetPassword/${this.props.match.params.id}`
 
         const { password, passwordConfirm } = this.state;
 

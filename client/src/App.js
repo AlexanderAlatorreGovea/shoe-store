@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, matchPath } from 'react-router-dom';
+import { withRouter } from "react-router";
 
 import LandingPage from './pages/LandingPage/LandingPage';
 import AboutPage from './pages/AboutPage/AboutPage';
@@ -23,34 +24,58 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import Careers from './pages/Careers/Careers';
 
 class App extends React.Component {
+
+  // componentDidUpdate() {
+  //   if (this.props.globalState.popupCartOpen == true) {
+  //     console.log(this.props.globalState.popupCartOpen);
+  //     const cartPopupElement = document.getElementById('cart-popup');
+  //     document.addEventListener('click', event => {
+  //       var clickedInside = cartPopupElement.contains(event.target);
+  //       if (clickedInside) {
+  //       } else {
+  //         this.props.closingCart();
+  //       }
+  //     });
+  //   }
+  // }
+
   render() { 
+    const { location } = this.props;
     return ( 
-      <div className="App">
-        <ScrollToTop />
-        <Header/>
-        <Switch>
-          <Route exact path="/" component={ LandingPage }/>
-          <Route  exact path="/about" component={ AboutPage }/>
-          <Route  exact path="/products" component={ Products }/>
-          <Route  exact strict path="/products/:product" component={ ProductPage }/>
-          <Route  exact path="/login" component={ LoginPage }/>
-          <Route  exact path="/register" component={ RegisterPage }/>
-          <Route  exact path="/checkout" component={ Checkout  }/>
-          <Route exact path="/new-arrivals" component={ NewArrivals } />
-          <Route  exact path="/orders" component={ OrdersPage }/>
-          <Route exact path="/resetPassword/:id" component={ ChangePassword }/>
-          <Route  exact path="/checkboxes" component={ checkboxes }/>
-          <Route exact path="/account/forgot-password" component={ PasswordMailer }/>
-          <Route exact path="/ContactUs" component={ ContactUs } />
-          <Route exact path="/Careers" component={ Careers } />
-          <Route exact path="/Partner" component={ Partner } />
-          <Route exact path="/OurStory" component={ OurStory } />
-          <Route exact path="/Faq" component={ Faq } />
-        </Switch>
+      <Router> 
+        <div className="App">
+          <ScrollToTop />
+            <Header/>  
+            <Switch >
+              <Route exact path="/" component={ LandingPage }/>
+              <Route  exact path="/about" component={ AboutPage }/>
+              <Route  exact path="/products" component={ Products }/>
+              <Route 
+                exact 
+                path="/products/:product"
+                render={props => {
+                  return <ProductPage {...props} />;
+                }} 
+              /> 
+              <Route  exact path="/login" component={ LoginPage }/>
+              <Route  exact path="/register" component={ RegisterPage }/>
+              <Route  exact path="/checkout" component={ Checkout  }/>
+              <Route exact path="/new-arrivals" component={ NewArrivals } />
+              <Route  exact path="/orders" component={ OrdersPage }/>
+              <Route  exact path="/checkboxes" component={ checkboxes }/>
+              <Route exact path="/account/forgot-password" component={ PasswordMailer }/>
+              <Route exact path="/ContactUs" component={ ContactUs } />
+              <Route exact path="/Careers" component={ Careers } />
+              <Route exact path="/Partner" component={ Partner } />
+              <Route exact path="/OurStory" component={ OurStory } />
+              <Route exact path="/Faq" component={ Faq } />
+              <Route path="resetPassword/:id" component={ChangePassword} />
+            </Switch>
+        </div>
         <Footer />
-      </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

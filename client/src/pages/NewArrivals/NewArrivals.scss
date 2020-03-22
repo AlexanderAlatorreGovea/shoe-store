@@ -298,6 +298,17 @@
   }
 }
 
+.new-arrivals-page {
+  footer, .Footer {
+    display: none;
+  }
+}
+
+#loading-component {
+  padding-top: 300px;
+  padding-bottom: 374px;
+}
+
 .grid-filter-item {
   min-width: 33%;
   list-style: none;

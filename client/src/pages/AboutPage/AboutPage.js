@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './AboutPage.scss';
+import Footer from '../../components/Footer/Footer';
 
 const AboutPage = () => (
     <div className="content-area about-page">

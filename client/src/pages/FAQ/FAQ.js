@@ -66,7 +66,7 @@ const Faq = () => (
                 <div className="detail-section">
                     <div className="detail">
                         <input type="checkbox" id="delivery-dropdown" className="toggle" ></input>
-                        <label className="title" for="delivery-dropdown">Delivery</label>
+                        <label className="title" for="delivery-dropdown">Speed of Delivery</label>
                         <div className="content">
                             <p className="">
                                 The speeds that show are dependent on those made available by the seller.
@@ -82,8 +82,8 @@ const Faq = () => (
                 </div>
                 <div className="detail-section">
                     <div className="detail">
-                        <input type="checkbox" id="refund-dropdown" className="toggle"></input>
-                        <label className="title" for="warranty">warranty</label>
+                        <input type="checkbox" id="n" className="toggle"></input>
+                        <label className="title" for="n">warranty</label>
                         <div className="content">
                             <p className="">
                                 NEW! Accepting Returns
@@ -97,8 +97,8 @@ const Faq = () => (
                 </div> 
                 <div className="detail-section">
                     <div className="detail">
-                        <input type="checkbox" id="refund-dropdown" className="toggle"></input>
-                        <label className="title" for="returns">Returns</label>
+                        <input type="checkbox" id="r" className="toggle"></input>
+                        <label className="title" for="r">Returns</label>
                         <div className="content">
                             <p className="">
                                 NEW! Accepting Returns
@@ -112,8 +112,8 @@ const Faq = () => (
                 </div> 
                 <div className="detail-section">
                     <div className="detail">
-                        <input type="checkbox" id="refund-dropdown" className="toggle"></input>
-                        <label className="title" for="shipping">Refund</label>
+                        <input type="checkbox" id="f" className="toggle"></input>
+                        <label className="title" for="f">Refund</label>
                         <div className="content">
                             <p className="">
                                 NEW! Accepting Returns
@@ -127,8 +127,8 @@ const Faq = () => (
                 </div> 
                 <div className="detail-section">
                     <div className="detail">
-                        <input type="checkbox" id="refund-dropdown" className="toggle"></input>
-                        <label className="title" for="refund-dropdown">Refund</label>
+                        <input type="checkbox" id="d" className="toggle"></input>
+                        <label className="title" for="d">Policy</label>
                         <div className="content">
                             <p className="">
                                 NEW! Accepting Returns

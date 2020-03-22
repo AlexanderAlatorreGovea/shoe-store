@@ -95,7 +95,7 @@ class LoginPage extends Component {
                         </div>
                     </div>
                     <div className="footer">
-                        Need an account? <Link to="register">Sign Up</Link>
+                        Need an account? <Link to="/register">Sign Up</Link>
                     </div>
                     </div>
                 </div>

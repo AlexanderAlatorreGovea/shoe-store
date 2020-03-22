@@ -85,18 +85,24 @@ app.post('/payment', (req, res) => {
   });
 });
 
-app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
-  if (err) {
-    res.send(err)
-  }
-});
+if (process.env.NODE_ENV = 'development') {
+  app.use(morgan('dev'));
+}
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
     if (err) {
       res.send(err)
     }
-  })
-});
+  });
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
+      if (err) {
+        res.send(err)
+      }
+    })
+  });
+}
 
 module.exports = app;

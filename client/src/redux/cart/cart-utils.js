@@ -10,7 +10,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
           : cartItem
       );
     }
-
+ 
     return [...cartItems, { ...cartItemToAdd, quantity: cartItemToAdd['chosenSize'].length }];
 };
   
@@ -18,7 +18,7 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
     const existingCartItem = cartItems.find(
         cartItem => cartItem._id === cartItemToRemove._id
     );
-
+ 
     console.log(existingCartItem.chosenSize.pop())
 
     if (existingCartItem.quantity === 1) {

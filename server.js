@@ -14,9 +14,9 @@ const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
-
+ 
 mongoose
-  .connect(DB, {
+  .connect('mongodb+srv://alexandergovea19:Freshman123.@cluster0-yyfkd.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -24,8 +24,8 @@ mongoose
   .then(() => console.log('DB connection successful!'))
   .catch(err => console.log(err));
 
-//const port = process.env.PORT || 4000;
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
+//const port = process.env.PORT;
 
 const server = app.listen(port, error => {
   if (error) throw error;

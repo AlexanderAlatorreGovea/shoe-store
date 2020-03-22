@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, matchPath } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -10,7 +10,7 @@ import { logout } from '../../redux/auth/auth-actions';
 
 import './Header.scss';
 import './hamburger.scss';
-
+ 
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -49,7 +49,7 @@ class Header extends Component {
     render() {
         const { toggleCart, isTablet } = this.state;
         const { itemCount, total } = this.props;
-        const isAuthenticated = this.props.authenticated.some((value) => value)
+        const isAuthenticated = this.props.authenticated.some((value) => value);
         return (
             <div style={{ margin: '0 auto' }}>
                 <header> 
@@ -70,11 +70,11 @@ class Header extends Component {
                         className='menu'
                         id={this.state.toggleMenu ? "visible" : ''}
                     >
-                        <Link to="ourstory">About</Link>
-                        <Link to="new-arrivals">New Arrivals</Link>
-                        <Link to="products">All Products</Link>
+                        <Link to="/ourstory">About</Link>
+                        <Link to="/new-arrivals">New Arrivals</Link>
+                        <Link to="/products">All Products</Link>
                         {isAuthenticated 
-                            ? (<div onClick={this.props.logout} className="sign-out" to="/">Sign Out</div>) : (<Link to="login">Sign In</Link>) } 
+                            ? (<div onClick={this.props.logout} className="sign-out" to="/">Sign Out</div>) : (<Link to="/login">Sign In</Link>) } 
                         {isTablet ? (
                                 <div onClick={this.toggleCart} className="cart-link">Cart<span>{itemCount}</span></div>
                             ) : (

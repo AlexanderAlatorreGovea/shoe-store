@@ -34,7 +34,7 @@ const PopUp = ({ total, toggleCart, cartItems, itemCount, toggleCartHandler, his
                 ) : (
                     <span className="empty-message">Your cart is empty</span>
                 )}
-                </div>
+                </div> 
                 <div className="product-total">
                     <div className="inside-container">
                         <div className="title">Total</div>

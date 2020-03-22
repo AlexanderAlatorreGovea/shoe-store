@@ -14,7 +14,7 @@ class checkboxes extends Component {
 
     componentDidMount() {
         axios
-            .get('/api/v1/products')
+            .get('http://localhost:4000/api/v1/products')
             .then((res) => {
                 let items = res.data.data.data;
                 this.setState({

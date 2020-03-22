@@ -222,3 +222,42 @@
         }
     }
 }
+ 
+#size-option {
+  display: flex; 
+  padding: 20px; 
+  background: #ecf0f3; 
+  color: #484c4f ;  
+  flex-wrap: wrap; 
+  margin: 3px; 
+  cursor: pointer; 
+  width: 100%;
+  &:hover {
+    background: red;
+    color: white;
+  }
+}
+
+.focus-option {
+  background: red !important;
+  color: white !important;
+}
+
+.focus-button {
+  outline: 5px auto rgba(0, 150, 255, 1);
+  -webkit-outline: 5px auto rgba(0, 150, 255, 1);
+  -moz-outline: 5px auto rgba(0, 150, 255, 1);
+  -ms-outline: 5px auto rgba(0, 150, 255, 1);
+  -o-outline: 5px auto rgba(0, 150, 255, 1);
+  /* Use a border to apply the outline */
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-color: #a41d23 !important;
+  /* Unimortant styling: */
+  background: linear-gradient(
+    to bottom,
+    #fff 30%,
+    #fcfcfc 40%,
+    #f8f8f8 50%,
+    #f0f0f0 100%
+  );
+}

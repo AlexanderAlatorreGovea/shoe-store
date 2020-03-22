@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import uuid from "uuid";
 import axios from 'axios';
-
+ 
 import Pagination from '../../components/Pagination/Pagination';
 import Spinner from './../../components/Spinner/Spinner';
 import Brands from './../../components/Brands/Brands';
 import Checkbox from './../../components/Checkbox/Checkbox';
-import available_sizes from './../../data/Sizes';
+import available_sizes from './../../data/Sizes'; 
+import { showAlert } from '../../redux/utils/alerts'; 
+import ProductPage from '../ProductPage/ProductPage';
 
 import './Products.scss';
 
@@ -36,13 +38,14 @@ class Products extends React.Component {
             stock: '',
             activeMenu: false,
 
-            resetBoxes: false
+            resetBoxes: false,
+            showError: false
         };
     };
-
+     
     componentDidMount () {
         axios
-            .get('/api/v1/products')
+            .get('http://localhost:4000/api/v1/products')
             .then((res) => {
                 let products = res.data.data.data;
                 this.setState({
@@ -173,7 +176,7 @@ class Products extends React.Component {
                 return brands.brand.includes(this.state.activeBrand);
             })
         });
-    };
+    }; 
 
     resetFilters = (event) => {
         event.preventDefault();
@@ -186,14 +189,22 @@ class Products extends React.Component {
         });
 
         this.selectedGender = '';
-    };
+    }; 
 
     filterBrand = (category) => {
         this.setState({
             activeBrand: category
         })
-    };
- 
+    }; 
+
+    errorAlert = () => {
+        if (this.selectedGender === '' || this.state.activeBrand === 'all') {
+            this.setState({
+                showError: true
+            })
+        };
+    }
+
     render() {
     const {
         filteredProducts,
@@ -236,7 +247,7 @@ class Products extends React.Component {
                     </div>
                 </div>
                 </div>
- 
+                {this.state.showError && showAlert('error', 'Error logging in! Try again.')}
                 <div className="filter">
                 <input type="checkbox" id="brand-options" className="toggle"></input>
                 <label className="title" htmlFor="brand-options">Brand</label>
@@ -248,7 +259,6 @@ class Products extends React.Component {
                     />
                 </div>
                 </div>
-
                 <div className="filter">
                 <input type="checkbox" id="price-options" className="toggle" ></input>
                 <label className="title" htmlFor="price-options">Price</label>
@@ -267,7 +277,6 @@ class Products extends React.Component {
                     </div>
                 </div>
                 </div>
-
                 <div className="filter">
                 <input type="checkbox" id="size-options" className="toggle" ></input>
                 <label className="title" htmlFor="size-options">Size</label>
@@ -277,13 +286,27 @@ class Products extends React.Component {
                     </div>
                 </div> 
                 </div>
-
-                <button type="submit" className="reset-filter" onClick={this.resetFilters}>Reset Filters</button>
+                <button 
+                    type="submit" 
+                    className="reset-filter" 
+                    // onClick={() => {
+                    //     showAlert('error', 'Login to process your payment.');
+                    //     this.resetFilters();
+                    // }}
+                    onClick={this.errorAlert}
+                    onClick={this.resetFilters}
+                >    
+                    Reset Filters
+                </button>
 
                 <button 
                     type="submit" 
                     className="filter-btn" 
-                    onClick={this.handleFormSubmit}
+                    //onSubmit={this.handleFormSubmit}
+                    onClick={() => {
+                        this.errorAlert(); 
+                        this.handleFormSubmit();
+                    }}
                     disabled={this.selectedGender !== '' && this.state.activeBrand !== 'all' ? false : true}
                 >
                     Filter
@@ -305,7 +328,7 @@ class Products extends React.Component {
                 const { image, title, price, stock } = item;
                 return (
                     <div className="product-wrap" key={uuid()}>
-                        <Link
+                        <Link 
                             to={{
                                 pathname: `${location.pathname}/${item.title}`,
                                 state: {
@@ -313,7 +336,7 @@ class Products extends React.Component {
                                     inStock: stock
                                 }
                             }}
-                        >
+                            >
                             <div>
                                 <div className="product">
                                     <div className="circle">

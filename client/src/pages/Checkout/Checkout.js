@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import StripeButton from '../../components/StripeButton/StripeButton';
 import { useState } from 'react';
+import Footer from '../../components/Footer/Footer';
 
 import { 
     selectCartItems, 
@@ -44,11 +45,11 @@ const Checkout = ({ total, itemCount, cartItems, removeSize }) => {
         openModal(false)
     };
   
-    return (
+    return ( 
         <section className="content-area checkout-page">
             <div className="container">
                 <div className="box-container">
-                    <h1>Check Out</h1>
+                    <h1>Check Out</h1> 
                     <hr />
                     <div className="checkout-grid">
                     <div className="forms">
@@ -78,7 +79,7 @@ const Checkout = ({ total, itemCount, cartItems, removeSize }) => {
                                     displayModal={displayModal}
                                     hideModal={hideModal}
                                     open={open} 
-                            />)) :
+                            />)) : 
                             (<h3 style={{ textAlign: 'center', paddingTop: '3rem' }}>There are no items in your cart &#128531; </h3>)
                         }
                     </div>
@@ -99,28 +100,28 @@ const Checkout = ({ total, itemCount, cartItems, removeSize }) => {
                             <span>total:</span>&nbsp; ${itemCount > 0 ? _total.toFixed(2) : 0}
                         </div>
                         {cartItems.map(cartItem => {
-                                return (
-                                        <div className="pricing">
-                                            <span>Details:</span>
-                                            <br/>
-                                            <div style={{display: 'flex', flexDirection: 'row' }}>
-                                                <span style={{ color: 'red', fontWeight: '400' }}>Model:</span>&nbsp;
-                                                <h5 style={{ color: 'black' }}>{cartItem.title}</h5>
+                            return (
+                                <div className="pricing">
+                                    <span>Details:</span>
+                                    <br/>
+                                    <div style={{display: 'flex', flexDirection: 'row' }}>
+                                        <span style={{ color: 'red', fontWeight: '400' }}>Model:</span>&nbsp;
+                                        <h5 style={{ color: 'black' }}>{cartItem.title}</h5>
+                                    </div>
+                                    {cartItem.chosenSize.map((item, idx)=> {
+                                        return(
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '85%' }}>
+                                                <div style={{ color: '#ff4500', fontWeight: '400' }}>size: <span style={{ color: 'black', fontWeight: '400' }}>{item.size}</span></div>
+                                                <div 
+                                                    onClick={() => removeSize(cartItem, item, idx)} 
+                                                    style={{ alignSelf: 'flex-end', color: '#db3236', cursor: 'pointer' }}>
+                                                    &#10007;
+                                                </div> 
                                             </div>
-                                            {cartItem.chosenSize.map((item, idx)=> {
-                                                return(
-                                                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '85%' }}>
-                                                        <div style={{ color: '#ff4500', fontWeight: '400' }}>size: <span style={{ color: 'black', fontWeight: '400' }}>{item.size}</span></div>
-                                                        <div 
-                                                            onClick={() => removeSize(cartItem, item, idx)} 
-                                                            style={{ alignSelf: 'flex-end', color: '#db3236', cursor: 'pointer' }}>
-                                                            &#10007;
-                                                        </div> 
-                                                    </div>
-                                                )
-                                            })}
-                                        </div>
-                                    )
+                                        ) 
+                                    })}
+                                </div>
+                                )
                             })}
                     </div>
                     <StripeButton price={total} />
