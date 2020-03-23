@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 const path = require('path');
-const express = require('express'); 
+const express = require('express');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -28,20 +28,28 @@ app.options('*', cors());
 
 // Set security HTTP headers
 app.use(helmet());
- 
+
 // if (process.env.NODE_ENV = 'development') {
-  // app.use(morgan('dev'));
+// app.use(morgan('dev'));
 // }
 
 app.use(morgan('dev'));
 
-//if (process.env.NODE_ENV === 'production') {
-  // // app.use(express.static(path.join(__dirname, 'client/build')));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
+//     if (err) {
+//       res.send(err)
+//     }
+//   });
 
-  // // app.get('*', (req, res) => {
-  // //   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  // // });
-//}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
+//       if (err) {
+//        res.send(err)
+//       }
+//     })
+//   });
+// }
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -51,21 +59,21 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 //DATA SANITIZATION against no sql query injection
 app.use(mongoSanitize());
- 
+
 app.use(xss());
 
 //serving static files
 app.use(compression());
- 
+
 // 3) ROUTES
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/auth', authRouter);
- 
+
 app.post('/payment', (req, res) => {
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
-    currency: 'usd' 
+    currency: 'usd'
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
@@ -77,30 +85,24 @@ app.post('/payment', (req, res) => {
   });
 });
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+if (process.env.NODE_ENV = 'development') {
+  app.use(morgan('dev'));
+}
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-});
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
+    if (err) {
+      res.send(err)
+    }
+  });
 
-// if (process.env.NODE_ENV = 'development') {
-//   app.use(morgan('dev'));
-// }
-
-//if (process.env.NODE_ENV === 'production') {
-  // app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
-  //   if (err) {
-  //     res.send(err)
-  //   }
-  // });
-
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
-  //     if (err) {
-  //       res.send(err)
-  //     }
-  //   })
-  // });
-//}
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
+      if (err) {
+        res.send(err)
+      }
+    })
+  });
+}
 
 module.exports = app;
