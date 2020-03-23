@@ -18,7 +18,7 @@ export default class ChangePassword extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const URL = `http://localhost:4000/api/v1/auth/resetPassword/${this.props.match.params.id}`
+        const URL = `/api/v1/auth/resetPassword/${this.props.match.params.id}`
 
         const { password, passwordConfirm } = this.state;
 

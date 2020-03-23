@@ -18,7 +18,7 @@ export default class NewArrivals extends Component {
 
     componentDidMount() {
         axios
-            .get('http://localhost:4000/api/v1/products')
+            .get('/api/v1/products')
             .then((res) => {
                 this.setState({
                     products: res.data.data.data,

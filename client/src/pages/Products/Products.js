@@ -45,7 +45,7 @@ class Products extends React.Component {
      
     componentDidMount () {
         axios
-            .get('http://localhost:4000/api/v1/products')
+            .get('/api/v1/products')
             .then((res) => {
                 let products = res.data.data.data;
                 this.setState({
@@ -86,7 +86,7 @@ class Products extends React.Component {
 
     createCheckbox = label => {
         return (
-            <Checkbox
+            <Checkbox 
                 label={label}
                 handleCheckboxChange={this.toggleCheckbox}
                 key={label}
