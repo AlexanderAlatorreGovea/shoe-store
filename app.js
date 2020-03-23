@@ -35,21 +35,13 @@ app.use(helmet());
 
 app.use(morgan('dev'));
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, 'client/build')), function (err) {
-//     if (err) {
-//       res.send(err)
-//     }
-//   });
+//if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
-//       if (err) {
-//        res.send(err)
-//       }
-//     })
-//   });
-// }
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  });
+//}
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -85,24 +77,24 @@ app.post('/payment', (req, res) => {
   });
 });
 
-if (process.env.NODE_ENV = 'development') {
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV = 'development') {
+//   app.use(morgan('dev'));
+// }
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
-    if (err) {
-      res.send(err)
-    }
-  });
+//if (process.env.NODE_ENV === 'production') {
+  // app.use(express.static(path.join(__dirname, 'client/build')), function (err, res, req) {
+  //   if (err) {
+  //     res.send(err)
+  //   }
+  // });
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
-      if (err) {
-        res.send(err)
-      }
-    })
-  });
-}
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err, res, req) {
+  //     if (err) {
+  //       res.send(err)
+  //     }
+  //   })
+  // });
+//}
 
 module.exports = app;
