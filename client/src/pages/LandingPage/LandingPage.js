@@ -2,7 +2,7 @@ import React from 'react';
 
 import './LandingPage.scss';
 import image from '../../assets/adidas-yeezy-boost-350-white.png';
-
+ 
 const LandingPage = () => (
     <section className="content-area home-page">
         <div className="top-section">
@@ -11,7 +11,7 @@ const LandingPage = () => (
                 <img src={image} />
             </div>
             </div>
-            <div className="titles">
+            <div className="titles animated fadeInUp">
             <h3>Yeezy</h3>
             <h1>Boost 350</h1>
             </div>

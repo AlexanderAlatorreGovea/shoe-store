@@ -42,7 +42,7 @@ class Products extends React.Component {
             showError: false
         };
     };
-     
+    
     componentDidMount () {
         axios
             .get('/api/v1/products')

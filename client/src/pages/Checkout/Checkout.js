@@ -44,7 +44,7 @@ const Checkout = ({ total, itemCount, cartItems, removeSize }) => {
     const hideModal = () => { 
         openModal(false)
     };
-  
+   
     return ( 
         <section className="content-area checkout-page">
             <div className="container">
@@ -103,18 +103,22 @@ const Checkout = ({ total, itemCount, cartItems, removeSize }) => {
                             return (
                                 <div className="pricing">
                                     <span>Details:</span>
+                                    <div style={{ paddingBottom: '.2rem' }}></div>
                                     <br/>
-                                    <div style={{display: 'flex', flexDirection: 'row' }}>
-                                        <span style={{ color: 'red', fontWeight: '400' }}>Model:</span>&nbsp;
-                                        <h5 style={{ color: 'black' }}>{cartItem.title}</h5>
-                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', paddingBottom: '.5rem' }}>
+                                        <span className="model-span" style={{ color: 'red', fontWeight: '400' }}>Model:</span>&nbsp;
+                                        <h5 className="model-header" style={{ color: 'black' }}>{cartItem.title}</h5>
+                                    </div> 
                                     {cartItem.chosenSize.map((item, idx)=> {
                                         return(
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '85%' }}>
-                                                <div style={{ color: '#ff4500', fontWeight: '400' }}>size: <span style={{ color: 'black', fontWeight: '400' }}>{item.size}</span></div>
+                                            <div className='chosen-size' style={{ display: 'flex', width: '100%', paddingBottom: '.5rem' }}>
+                                                <div className="size-price" style={{ color: '#ff4500', fontWeight: '400' }}>size: &nbsp; &nbsp;<span className="price-span" style={{ color: 'black', fontWeight: '400' }}>{item.size}</span>
+                                                </div>
                                                 <div 
+                                                    className='x'
                                                     onClick={() => removeSize(cartItem, item, idx)} 
-                                                    style={{ alignSelf: 'flex-end', color: '#db3236', cursor: 'pointer' }}>
+                                                    style={{ alignSelf: 'flex-end', color: '#db3236', cursor: 'pointer' }}
+                                                >
                                                     &#10007;
                                                 </div> 
                                             </div>

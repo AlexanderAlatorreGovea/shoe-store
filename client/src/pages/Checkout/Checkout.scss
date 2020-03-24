@@ -18,10 +18,28 @@
         padding: 80px 10px;
       }
     }
+    .model-span {
+      @media screen and (max-width: 768px) {
+        margin: 0;
+      }
+    }
+    .model-header {
+      @media screen and (max-width: 768px) {
+        margin: 0;
+      }
+    }
+    .chosen-size {
+      justify-content: space-between;
+      @media screen and (max-width: 768px) {
+        justify-content: end;
+      }
+    }
     .container {
       @media screen and (max-width: 768px) {
-        width: 100%;
+        width: 90%;
         padding: 0;
+        // margin-right: 0;
+        // margin-left: 0;
       }
     }
     .checkout-grid{
@@ -60,6 +78,17 @@
       @media screen and (max-width: 768px) {
         margin: 0 !important;
       }
+    }
+    .size-price {
+      font-size: 17px;
+      margin-bottom: 0;
+      margin: 0;
+      @media screen and (max-width: 768px) {
+        padding-right: 3rem;
+      }
+    }
+    .x {
+      margin: 0;
     }
     .totals{
       margin: 1.5rem auto;
