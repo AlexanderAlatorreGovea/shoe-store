@@ -323,14 +323,28 @@
     }
   }
 
-  .grid-filter-item {
+.grid-filter-item {
     min-width: 33%;
     list-style: none;
 }
 
+.no-results {
+  text-align: center;
+  padding-top: 0rem;
+  padding-left: 28px;
+  font-size: 23px;
+  @media screen and (max-width: 1024px) {
+    padding-top: 10rem;
+    padding-left: 0px;
+  }
+  @media screen and (max-width: 700px) {
+    padding-top: 12rem;
+    padding-left: 0px;
+  }
+}
+
 .tile-input {
     margin: -1px 0 0 -1px;
-
     background-color: transparent;
     font-family: Source Sans Pro Regular,sourcesanspro,sans-serif;
     font-size: 1.2rem;

@@ -22,6 +22,7 @@ import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import ContactUs from './pages/ContactUs/ContactUs';
 import Careers from './pages/Careers/Careers';
+import DomiProductPage from './pages/DomiProductPage/DomiProductPage';
 
 class App extends React.Component {
 
@@ -70,6 +71,7 @@ class App extends React.Component {
               <Route exact path="/OurStory" component={ OurStory } />
               <Route exact path="/Faq" component={ Faq } />
               <Route path="resetPassword/:id" component={ChangePassword} />
+              <Route path="/DomiProductPage" component={DomiProductPage} />
             </Switch>
         </div>
         <Footer />

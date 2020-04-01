@@ -37,12 +37,11 @@ class Products extends React.Component {
             size: '',
             stock: '',
             activeMenu: false,
-
             resetBoxes: false,
             showError: false
         };
     };
-    
+
     componentDidMount () {
         axios
             .get('/api/v1/products')
@@ -102,81 +101,62 @@ class Products extends React.Component {
     }
 
     sortByPrice = (price) => {
-        let sortedPrice = this.state.filteredProducts.sort((a,b) => {
+        let shallowCopy = [...this.state.filteredProducts];
+
+        let sortedPrice = this.state.filteredProducts.sort((a, b) => {
             return price === 'min' ? a.price - b.price : b.price - a.price
         });
 
         if (price === 'min') {
-            this.setState({ 
+            this.setState({
                 min_price: !this.state.min_price,
                 max_price: false
             })
-        }  else if (price === 'max') {
-            this.setState({ 
+        } else if (price === 'max') {
+            this.setState({
                 max_price: !this.state.max_price,
                 min_price: false
             })
         }
 
         this.setState({
-           sortBy : sortedPrice
+            sortBy: sortedPrice
         })
     };
- 
-    handleFormSubmit = (event) => {
+
+    handleFormSubmit = async (event) => {
         event.preventDefault();
 
         const selectedSizes = [...this.selectedCheckboxes];
 
         let shallowCopy = [...this.state.products];
 
-        //let filteredProduct = 
-        // shallowCopy.filter(product =>
-        //     selectedSizes.every(size =>
-        //         product.stock.some(s => s.stock > 0 && s.size === size)
-        //     )
-        // );
-
-        // shallowCopy.filter(product =>
-        //     selectedSizes.every(size =>
-        //         product.stock.some(s => s.stock > 0 && s.size === size)
-        //     )
-        // ).filter((prod) => {
-        //     return prod.gender.some((item) => {
-        //         return item[this.selectedGender] === false ? null : prod
-        //     })
-        // }).filter(product => {
-        //     return product.brand.includes(this.state.activeBrand);
-        // })
-
-        //if (this.selectedGender) {
-            //let filteredGender = 
-            // shallowCopy.filter((prod) => {
-            //     return prod.gender.some((item) => {
-            //         return item[this.selectedGender] === false ? null : prod
-            //     })
-            // });
-        //}
-
-        //let filteredData = 
-        // // shallowCopy.filter(product => {
-        // //     return product.brand.includes(this.state.activeBrand);
-        // // });
-
-        this.setState({
-            filteredProducts: shallowCopy.filter(product =>
+        if (this.selectedCheckboxes !== '') {
+            shallowCopy = await shallowCopy.filter(product =>
                 selectedSizes.every(size =>
                     product.stock.some(s => s.stock > 0 && s.size === size)
                 )
-            ).filter((prod) => {
-                return prod.gender.some((item) => {
-                    return item[this.selectedGender] === false ? null : prod
-                })
-            }).filter(brands => {
-                return brands.brand.includes(this.state.activeBrand);
-            })
-        });
-    }; 
+            );
+        }
+
+        if (this.state.activeBrand !== 'all') {
+            shallowCopy = await shallowCopy.filter(product => {
+                return product.brand.includes(this.state.activeBrand);
+            });
+        }
+
+        if (this.selectedGender !== '') {
+            shallowCopy = await shallowCopy.filter(product => {
+                return product.gender.some((item, idx, arr) => {
+                    return item[this.selectedGender] === false ? null : product;
+                });
+            });
+        }
+
+        this.setState({
+            filteredProducts: shallowCopy
+        })
+    }
 
     resetFilters = (event) => {
         event.preventDefault();
@@ -208,7 +188,7 @@ class Products extends React.Component {
     render() {
     const {
         filteredProducts,
-        currentPage, 
+        currentPage,
         productsPerPage,
         activeBrand,
         isLoading,
@@ -221,8 +201,8 @@ class Products extends React.Component {
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(
-      indexOfFirstProduct,
-      indexOfLastProduct
+        indexOfFirstProduct,
+        indexOfLastProduct
     );
     const { location } = this.props;
     return (
@@ -289,11 +269,6 @@ class Products extends React.Component {
                 <button 
                     type="submit" 
                     className="reset-filter" 
-                    // onClick={() => {
-                    //     showAlert('error', 'Login to process your payment.');
-                    //     this.resetFilters();
-                    // }}
-                    onClick={this.errorAlert}
                     onClick={this.resetFilters}
                 >    
                     Reset Filters
@@ -302,12 +277,7 @@ class Products extends React.Component {
                 <button 
                     type="submit" 
                     className="filter-btn" 
-                    //onSubmit={this.handleFormSubmit}
-                    onClick={() => {
-                        this.errorAlert(); 
-                        this.handleFormSubmit();
-                    }}
-                    disabled={this.selectedGender !== '' && this.state.activeBrand !== 'all' ? false : true}
+                    onClick={this.handleFormSubmit}
                 >
                     Filter
                 </button>
@@ -324,42 +294,48 @@ class Products extends React.Component {
                 <span>Refine</span>
                 <i class="fa fa-filter" aria-hidden="true"></i>
             </div> 
-            {currentProducts.map(item => {
-                const { image, title, price, stock } = item;
-                return (
-                    <div className="product-wrap" key={uuid()}>
-                        <Link 
-                            to={{
-                                pathname: `${location.pathname}/${item.title}`,
-                                state: {
-                                    item: item,
-                                    inStock: stock
-                                }
-                            }}
-                            >
-                            <div>
-                                <div className="product">
-                                    <div className="circle">
-                                        <img alt="item" src={image} />
+            {currentProducts.length ?
+                currentProducts.map(item => {
+                    const { image, title, price, stock } = item;
+                    return (
+                        <div className="product-wrap" key={uuid()}>
+                            <Link 
+                                to={{
+                                    pathname: `${location.pathname}/${item.title}`,
+                                    state: {
+                                        item: item,
+                                        inStock: stock
+                                    }
+                                }}
+                                >
+                                <div>
+                                    <div className="product">
+                                        <div className="circle">
+                                            <img alt="item" src={image} />
+                                        </div>
                                     </div>
                                 </div>
+                            </Link>
+                            <div
+                                style={{ textDecoration: "none", color: "black" }}
+                                className="title"
+                            >
+                                {title}
                             </div>
-                        </Link>
-                        <div
-                            style={{ textDecoration: "none", color: "black" }}
-                            className="title"
-                        >
-                            {title}
+                            <div
+                                style={{ textDecoration: "none", color: "black" }}
+                                className="price"
+                            >
+                                ${price}
+                            </div>
                         </div>
-                        <div
-                            style={{ textDecoration: "none", color: "black" }}
-                            className="price"
-                        >
-                            ${price}
-                        </div>
-                    </div>
-                );
-            })}
+                    );
+                })
+                : 
+                (<h3 className="no-results">
+                        0 Results Found &#128531; 
+                </h3>)
+            }
             <Pagination 
                 paginate={this.paginate}
                 productsPerPage={productsPerPage}
