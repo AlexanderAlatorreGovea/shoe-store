@@ -9,7 +9,7 @@ const Faq = () => (
             className="first-container"
             style={{ backgroundImage: `url('https://images.pexels.com/photos/248159/pexels-photo-248159.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260')` }}
         >
-            <h1>Frequently Asked Questions</h1>
+            <h1 className="animated fadeInUp">Frequently Asked Questions</h1>
         </div> 
         <div className="second-container">
             <div className="left-container">
@@ -28,7 +28,7 @@ const Faq = () => (
                 </div>
             </div>
             <div className="right-container">
-                <h1>GENERAL QUESTIONS</h1>
+                <h1 className="animated fadeInUp">GENERAL QUESTIONS</h1>
                 <h5 style={{ color: '#a40000' }}>* We offer FREE returns on all orders over $50 USD!</h5>
                 <p style={{ color: '#5c5c5c'}}>Any brand new product can be returned for a full refund or store credit within 60 days of delivery. We offer free and easy returns for all domestic and international orders over $50 USD. Please contact Customer Support to schedule the return and receive a prepaid return label. Expedited shipping charges are non-refundable.</p>
                 <div className="detail-section">

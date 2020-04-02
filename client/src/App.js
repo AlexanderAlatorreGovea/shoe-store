@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, matchPath } from 'react-router-dom';
 import { withRouter } from "react-router";
+import WOW from "wowjs";
 
 import LandingPage from './pages/LandingPage/LandingPage';
 import AboutPage from './pages/AboutPage/AboutPage';
@@ -26,19 +27,10 @@ import DomiProductPage from './pages/DomiProductPage/DomiProductPage';
 
 class App extends React.Component {
 
-  // componentDidUpdate() {
-  //   if (this.props.globalState.popupCartOpen == true) {
-  //     console.log(this.props.globalState.popupCartOpen);
-  //     const cartPopupElement = document.getElementById('cart-popup');
-  //     document.addEventListener('click', event => {
-  //       var clickedInside = cartPopupElement.contains(event.target);
-  //       if (clickedInside) {
-  //       } else {
-  //         this.props.closingCart();
-  //       }
-  //     });
-  //   }
-  // }
+  componentDidMount() {
+    const wow = new WOW.WOW();
+    wow.init();
+  } 
 
   render() { 
     const { location } = this.props;

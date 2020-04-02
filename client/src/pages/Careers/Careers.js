@@ -1,26 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
 
-import './Careers.scss';
+import './Careers.scss'; 
 
 const Careers = () => (
     <div className="careers">
         <div className="first-container">
-            <h1>Want to Work for FreshGear?</h1>
-            <h3>FreshGear is home to some the best of the best in all areas of this industry. Does that sound like you? </h3>
+            <h1 className="animated fadeInUp delay-2s">Want to Work for FreshGear?</h1>
+            <h3 className="animated fadeInUp delay-1s">FreshGear is home to some the best of the best in all areas of this industry. Does that sound like you? </h3>
             <Link className="btn">Have a look at the career oportunities we have available <i class="fas fa-arrow-right"></i></Link>
         </div>
         <div className="container-two">
             <div className="container-two-sub" style={{ backgroundColor: '#171933' }}>
-                <div className="inner-container">
+                <div className="inner-container animated fadeInUp one">
                     <h5>VALUE #1</h5>
                     <h1>We Strive to Succeed</h1>
                     <p>Success isn’t a straight line. We acknowledge our mistakes and learn from them to move us closer to where we want to go.</p>
                 </div>
             </div>
             <div className="container-two-sub" style={{ backgroundColor: '#f7f8fb'}}>
-                <div style={{ color: '#102a43' }} className="inner-container">
+                <div style={{ color: '#102a43' }} className="inner-container animated fadeInUp delay-1s two">
                     <h5>VALUE #1</h5>
                     <h1 style={{ color: '#102a43' }}>We Strive to Succeed</h1>
                     <p style={{
@@ -28,7 +27,7 @@ const Careers = () => (
                 </div>
             </div>
             <div className="container-two-sub" style={{ backgroundColor: 'rgb(84, 87, 255)' }}>
-                <div className="inner-container">
+                <div className="inner-container animated fadeInUp delay-2s three">
                     <h5>VALUE #1</h5>
                     <h1>We Strive to Succeed</h1>
                     <p>Success isn’t a straight line. We acknowledge our mistakes and learn from them to move us closer to where we want to go.</p>
@@ -49,7 +48,7 @@ const Careers = () => (
                 <div className="div4" style={{ width: '100%', background: `url('https://images.pexels.com/photos/1181642/pexels-photo-1181642.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')` }}> </div>
                 <div className="div5" style={{ width: '100%', background: `url('https://images.pexels.com/photos/1346197/pexels-photo-1346197.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')` }}> </div>
                 <div className="div6"> 
-                    <div className="inner-box">
+                    <div className="inner-box wow fadeInUp">
                         <p>
                             "You’ll be able to see the impact your work has, which gives you a huge sense of accomplishment."
                         </p>
@@ -59,7 +58,7 @@ const Careers = () => (
                 </div>
                 <div className="div7" style={{ width: '100%', background: `url('https://images.pexels.com/photos/7082/macbook-mockup-hero-ping-pong.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500')` }}> </div>
                 <div className="div8"> 
-                    <div className="inner-box">
+                    <div className="inner-box wow fadeInUp one">
                         <h2>Annual Workation</h2>
                         <p>
                             We believe a company is only as good as the people behind it. Once a year, we travel to a secret location to eat good food, socialize, and plan our roadmap for the coming year.                        
@@ -67,15 +66,15 @@ const Careers = () => (
                     </div>
                 </div>
                 <div className="div9"> 
-                    <div className="inner-box">
+                    <div className="inner-box wow fadeInUp two">
                         <h2>Work Remote</h2>
                         <p>
                             We know the best in the world aren’t always available on your doorstep. That’s why, at Sleeknote, we’re not afraid to hire remote employees.
                         </p>
                     </div>
                 </div>
-                <div className="div10"> 
-                    <div className="inner-box">
+                <div className="div10 three"> 
+                    <div className="inner-box wow fadeInUp three" style={{ marginTop: '11px'}}>
                         <h2>Education Budget</h2>
                         <p>
                             We believe in the importance of investing in good people. Need to read a book or enroll in a course to do your job better? We got you covered.
@@ -85,9 +84,9 @@ const Careers = () => (
             </div>
         </div>
         <div className="fifth-container">
-            <h5>COME JOIN US</h5>
-            <h1>Current Openings</h1>
-            <p>
+            <h5 className="wow fadeInUp">COME JOIN US</h5>
+            <h1 className="wow fadeInUp">Current Openings</h1>
+            <p className="wow fadeInUp">
                 If you’re passionate about doing good work and working on something greater than yourself, Sleeknote is the place for you. Don’t see a suitable job opening below? No problem. <Link> Send us an email</Link> and introduce yourself. We’re always looking for great people.
             </p>
         </div>

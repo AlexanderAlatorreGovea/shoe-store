@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ContactUs.scss';
-
+ 
 const ContactUs = () => (
     <div className="contact-us">
         <div className="skewed-box">
             <div className="container">
-                <h5>GOT A QUESTION</h5>
-                <h1>Contact FreshGear</h1>
-                <h3>
+                <h5 className="wow fadeInUp">GOT A QUESTION</h5>
+                <h1 className="wow fadeInUp two-contact">Contact FreshGear</h1>
+                <h3 className="wow fadeInUp three-contact">
                     We’re here to help and answer any question you might have. 
                     <br/>
                     We look forward to hearing from you 🙂

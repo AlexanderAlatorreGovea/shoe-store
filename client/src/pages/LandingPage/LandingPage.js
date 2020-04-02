@@ -9,7 +9,7 @@ const LandingPage = () => (
             <div className="product">
             <div className="circle">
                 <img src={image} />
-            </div>
+            </div> 
             </div>
             <div className="titles animated fadeInUp">
             <h3>Yeezy</h3>

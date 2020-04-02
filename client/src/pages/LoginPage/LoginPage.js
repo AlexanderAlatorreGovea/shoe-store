@@ -65,7 +65,7 @@ class LoginPage extends Component {
             <section className="content-area login_register-page">
                 <div className="container">
                     <div className="box-container">
-                    <h2>Log In</h2>
+                    <h2 className="animated fadeInUp">Log In</h2>
                     <div className="login-grid login">
                         <form onSubmit={this.onSubmit} style={{ width: '100%' }} >
                             <input 

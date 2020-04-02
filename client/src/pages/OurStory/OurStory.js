@@ -4,11 +4,11 @@ import WOW from "wowjs";
 import './OurStory.scss';
 
 class OurStory extends React.Component {
-
+ 
     componentDidMount() {
         const wow = new WOW.WOW();
         wow.init();
-    }
+    } 
 
     render() { 
         return ( 

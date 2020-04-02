@@ -48,6 +48,7 @@ header{
       width: 63rem;
       @media screen and (max-width: 769px) {
         width: 137px;
+        margin-right: 11px !important;
       }
       @media screen and (max-width: 768px) {
         position: absolute;
@@ -78,6 +79,19 @@ header{
       @media screen and (max-width: 320px) {
         left: 12rem;
       }
+      .new-arrivals-cart {
+        @media screen and (max-width: 768px) {
+          width: 128px;
+        }
+      }
+      .sign-in-out {
+        @media screen and (max-width: 768px) {
+          width: 128px;
+        }
+        @media screen and (max-width: 425px) {
+          margin-bottom: 5px;
+        }
+      }
       a, .sign-out {
         color: #484c4f;
         padding-right: 15px;
@@ -85,7 +99,7 @@ header{
         transition:color .2s ease-in-out;
         cursor: pointer;
         @media screen and (max-width: 768px) {
-          padding-top: 10px;
+          padding-top: 16px;
         }
         @media screen and (max-width: 425px) {
           padding-top: 1rem;

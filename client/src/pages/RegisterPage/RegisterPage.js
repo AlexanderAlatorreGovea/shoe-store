@@ -70,7 +70,7 @@ class RegisterPage extends Component {
             <section className="content-area login_register-page">
                 <div className="container">
                     <div className="box-container">
-                        <h2 style={{ color: '#484c4f' }} >Register</h2>
+                        <h2 className="animated fadeInUp" style={{ color: '#484c4f' }} >Register</h2>
                         <div className="login-grid register" />
                         <form onSubmit={this.onSubmit}>
                                 <input 
@@ -81,6 +81,15 @@ class RegisterPage extends Component {
                                     minlength='8'> 
                                 </input>
                                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%' }}>
+                                    <input
+                                        style={{ marginBottom: '10px' }}
+                                        className="input"
+                                        type="name"
+                                        name="name"
+                                        placeholder="name"
+                                        onChange={this.onChange}
+                                        minlength='8'>
+                                    </input> 
                                     <input 
                                         className="input"
                                         type="password" 
@@ -94,16 +103,7 @@ class RegisterPage extends Component {
                                         placeholder="Confirm Password"
                                         onChange={this.onChange}
                                         minlength='8'>
-                                    </input>   
-                                    <input 
-                                        style={{ marginBottom: '10px' }}
-                                        className="input"
-                                        type="name" 
-                                        name="name" 
-                                        placeholder="name"
-                                        onChange={this.onChange} 
-                                        minlength='8'>
-                                    </input>                 
+                                    </input>                   
                                 </div>
                             <button 
                                 id="register-button"

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class ShippingBilling extends Component {
     render() {
         return (
-            <div>
+            <div> 
                  <form>
                         <div className="form-group">
                             <label for="fname">First Name</label>
@@ -65,7 +65,7 @@ export default class ShippingBilling extends Component {
                             <label for="country">Country</label>
                             <input id="country" type="text" name="country"></input>
                         </div>
-                        </form>
+                </form>
             </div>
         )
     }

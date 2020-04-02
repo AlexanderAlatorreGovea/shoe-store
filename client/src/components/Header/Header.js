@@ -71,10 +71,14 @@ class Header extends Component {
                         id={this.state.toggleMenu ? "visible" : ''}
                     >
                         <Link to="/ourstory">About</Link>
-                        <Link to="/new-arrivals">New Arrivals</Link>
-                        <Link to="/products">All Products</Link>
+                        <Link 
+                            className="new-arrivals-cart" 
+                            to="/new-arrivals">
+                                New Arrivals
+                        </Link>
+                        <Link className="new-arrivals-cart" to="/products">All Products</Link>
                         {isAuthenticated 
-                            ? (<div onClick={this.props.logout} className="sign-out" to="/">Sign Out</div>) : (<Link to="/login">Sign In</Link>) } 
+                            ? (<div onClick={this.props.logout} className="sign-out" to="/">Sign Out</div>) : (<Link className="sign-in-out" to="/login">Sign In</Link>) } 
                         {isTablet ? (
                                 <div onClick={this.toggleCart} className="cart-link">Cart<span>{itemCount}</span></div>
                             ) : (

@@ -332,9 +332,7 @@ class Products extends React.Component {
                     );
                 })
                 : 
-                (<h3 className="no-results">
-                        0 Results Found &#128531; 
-                </h3>)
+                (!isLoading &&  <h3 className="no-results"> 0 Results Found &#128531; </h3>)
             }
             <Pagination 
                 paginate={this.paginate}
