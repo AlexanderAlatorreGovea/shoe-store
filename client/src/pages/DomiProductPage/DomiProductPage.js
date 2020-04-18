@@ -49,7 +49,7 @@ class DomiProductPage extends React.Component {
 
     fetchProducts = async () => {
         await axios
-            .get('http://localhost:4000/api/v1/products')
+            .get('/api/v1/products')
             .then((res) => {
                 let products = res.data.data.data;
                 this.setState({
@@ -73,7 +73,7 @@ class DomiProductPage extends React.Component {
     componentDidMount = () => {
         //await this.fetchProducts();   
         axios
-            .get('http://localhost:4000/api/v1/products')
+            .get('/api/v1/products')
             .then((res) => {
                 let products = res.data.data.data;
                 this.setState({

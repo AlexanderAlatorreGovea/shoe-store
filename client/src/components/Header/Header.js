@@ -40,7 +40,21 @@ class Header extends Component {
 
     componentWillUnmount = () => {
         window.removeEventListener("resize", this.onWidowResize);
+    } 
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const { itemCount } = this.props;
+        const cart = document.querySelector('.cart-link');
+        
+        if (prevProps.itemCount !== itemCount) {
+            if (itemCount !== 0) {
+                cart.classList.add("active-cart-link")
+            } else if (itemCount === 0) {
+                cart.classList.remove("active-cart-link")
+            }
+        }
     }
+
 
     onWidowResize = () => {
         this.setState({ isTablet: window.innerWidth > 769 });
@@ -80,9 +94,14 @@ class Header extends Component {
                         {isAuthenticated 
                             ? (<div onClick={this.props.logout} className="sign-out" to="/">Sign Out</div>) : (<Link className="sign-in-out" to="/login">Sign In</Link>) } 
                         {isTablet ? (
-                                <div onClick={this.toggleCart} className="cart-link">Cart<span>{itemCount}</span></div>
+                                <div onClick={this.toggleCart} className="cart-link">Cart
+                                    <span>{itemCount}</span>
+                                </div>
                             ) : (
-                                <Link to="/checkout" className="cart-link">Cart<span>{itemCount}</span></Link>
+                                <Link to="/checkout" 
+                                    className="cart-link">Cart
+                                    <span>{itemCount}</span>
+                                </Link>
                         )}
                     </div>
                 </header> 
@@ -102,8 +121,6 @@ const mapStateToProps = createStructuredSelector({
     itemCount: selectCartItemsCount,
     authenticated: authenticated
 });
-
-  
 
 export default connect(mapStateToProps, { logout })(Header);
 

@@ -95,7 +95,7 @@ export const login = ({ email, password }) => dispatch => {
   }); 
 
   axios
-    .post('api/v1/auth/login', body, config)
+    .post('/api/v1/auth/login', body, config)
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,

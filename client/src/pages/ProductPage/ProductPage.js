@@ -28,7 +28,7 @@ class ProductPage extends Component {
    
 
     alertBox = (product, products, count, delta) => {
-        //console.log(count)
+
         let newStock;
         let clickedSize;
         let selectedProduct;
@@ -36,36 +36,12 @@ class ProductPage extends Component {
         if (product.stock === 0) { 
             alert('The item is currently out of stock')
         } else {
-            //newStock = product.stock -= 1;  
+            
             clickedSize = product.size;
             selectedProduct = product._id;
             let newProducts;
-            // const  = products.filter(
-            //     cartItem => cartItem._id === product._id
-            // );
-
-            // const existingSize =  products.reduce((prod, item) => ({
-            //         ...prod,
-            //         //[item._id]: item
-            //         product: item
-            // }), {})
-
-            // const existingSize = products.find(
-            //     cartItem => cartItem._id === product._id
-            // );
-
-            // let newArray = this.state.newState.slice();    
-            //     newArray.push({ prod: product });
-            //     newArray = new Set(newArray);
-            //     newArray = [...newArray];
-            //     newProducts = [{...newArray, quantity: + 1 }];
 
             let quantity = 0;
-            // products.map((item) => {
-            //     return item._id === product._id ? 
-            //         newProducts = [...this.state.chosenSize , {...item, ...newStock }]
-            //         : product
-            // });
 
             products.map((item) => {
                 return item._id === product._id ? 
@@ -94,70 +70,18 @@ class ProductPage extends Component {
             this.setState(prevState => ({
                 chosenSize: newArray
             }))
-
-            //const newState = [{newProducts}];
-            //const newState = [this.state.chosenSize, {...product}];
-            //newState.push({...product});
-
-            // // let existingCartItem = chosenSize.find(
-            // //     cartItem => cartItem._id === selectedProduct 
-            // // );
-            // chosenSize.forEach(item => {
-            //     if (item._id === product._id) {
-            //         productAlreadyInCart = true;
-            //         item
-            //     }
-            // })
-            // if (existingCartItem) {
-            //     chosenSize.map((item) => {
-            //         item._id === selectedProduct 
-            //         ? { ...item, stock: newStock, size: clickedSize , quantity: item.quantity + 1 }
-            //         : item
-            //     })
-            // }
-            //let data = { stock: newStock, size: clickedSize };
-            //returnedData = Object.assign([data]);
-            //console.log(Object.assign([returnedData]))
-            //console.log([...chosenSize, { ...chosenSize, quantity: 1,  size: clickedSize}])
         }
     }
 
-    // // onUpdateItem = (i, product, prod) => { 
-    // //     let stock = prod.stock -= 1;
-    // //     this.setState(state => {
-    // //       const list = product.map((item, j) => {
-    // //         if (j === i) {
-    // //           return Object.assign({}, item, stock)
-    // //         } else {
-    // //           return item;
-    // //         }
-    // //       });
-
-    // //       const tester = [];
-    // //       const result = [];
-
-    // //       list.forEach(function(el) {
-    // //         if (tester.indexOf(el._id) === -1) {
-    // //             tester.push(el._id)
-    // //             result.push(el)
-    // //         }
-    // //       });
-    // //       return {
-    // //         list: result
-    // //       };
-    // //     });
-    // //   };
 
       onUpdateItem = (i, product, prod) => { 
-        // let newProd = product.stock;
-        //     this.setState({
-        //     chosenSize: product.map(el => (el._id === prod._id ? Object.assign({}, el, el.stock -= 1) : el))
-        // }); 
           
           const index = product.findIndex(emp => emp._id === prod._id),
-            products = [...product] // important to create a copy, otherwise you'll modify state outside of setState call
+            products = [...product] 
             products[index] = prod;
-            this.setState({chosenSize: products })
+            this.setState({
+                chosenSize: products 
+            })
       };
 
     onUpdateCopy = (products, product, delta) => {       
@@ -187,16 +111,6 @@ class ProductPage extends Component {
                 result.push({...el})
             }
         });
-
-
-        // products.map((item) => {
-        //     selectedSizes.every(size =>
-        //         product.stock.some(s => s.stock > 0 && s.size === size)
-        //     ) 
-
-        //     return item._id.has(this.seenItems) && items.push({...product, newStock: product.stock += delta, product: 0 });
-        // })
-
             
         this.setState(
             st => ({
@@ -206,13 +120,9 @@ class ProductPage extends Component {
         )
     };
 
-    onColtSteele = (products, product, delta) => {   
-        // // addItem = (weight, benefit, itemName) => {
-        // //     this.setState(prevState => ({
-        // //       Items: [...prevState.Items, {w:weight, b:benefit, name: itemName}]
-        // //     }))
-        // //   }
-        let sizeQuan = 0;
+    updateProducst = (products, product, delta) => {   
+    
+        let sizeQuantity = 0;
         this.seenItems.push({...product, newStock: product.stock += delta, product: this.state.sizeQuantity })
 
         const tester = [];
@@ -232,29 +142,6 @@ class ProductPage extends Component {
                 product: prevState.sizeQuantity += 1, 
             }))
         }))
-
-        // this.setState(prevState => ({
-        //     ...prevState,
-        //     chosenSize: prevState.chosenSize.map(item => ({
-        //         ...item,
-        //         newStock: item.newStock - delta,
-        //         product: item.product + 1
-        //     }))
-        // }))
-
-        // // this.setState(prevState => ({
-        // //     ...prevState,
-        // //     chosenSize: prevState.chosenSize.map(item => ({
-        // //         ...item,
-        // //         newStock: item._id === product._id ? item.newStock + delta : item.newStock
-        // //     }))
-        // // }))
-
-        // this.setState(
-        //     st => ({
-        //         chosenSize: products.map(item => (item._id === product._id ? {...item, stock: item.stock + delta} : item))
-        //     })
-        // )
     };
 
     componentWillMount () {
@@ -269,28 +156,6 @@ class ProductPage extends Component {
 
  
     newFunct = (array, index, newItem, delta) => {
-        //const result = [...this.state.chosenSize, {...newItem, addedSize: 1 }];
-       
-        // // const existingCartItem = this.state.chosenSize.find(
-        // //     cartItem => cartItem._id === newItem._id
-        // // );
-
-        // // if (newItem.stock === 0) { 
-        // //     return alert('The item is currently out of stock')
-        // // } else {
-        // //     this.state.chosenSize.length && alert(`You have selected a size ${newItem.size}. Press on the button below to update your cart`)
-        // //    if (existingCartItem) {
-        // //         this.setState(prevState => ({
-        // //             ...prevState,
-        // //             chosenSize: prevState.chosenSize.map(item =>({
-        // //                 ...item, 
-        // //                 addedSize: item.addedSize + 1
-        // //             })) 
-        // //         }))
-        // //     }
-        // // }
-        //return result
-        //let result; 
 
         this.setState(prevState => ({
             ...prevState,
@@ -324,7 +189,6 @@ class ProductPage extends Component {
 
             const addToCartBtn = this.buttonRef.current;
 
-            //addToCartBtn.style.backgroundColor = "#a41d23";
             addToCartBtn.classList.add("focus-button");
 
             this.setState({
@@ -333,12 +197,12 @@ class ProductPage extends Component {
         } 
     }
 
-    componentWillReceiveProps() {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         const sizes = document.querySelectorAll('#size-option');
         const addToCartBtn = this.buttonRef.current;
 
         if (this.props.cartItems[0] !== undefined || null) {
-            if (this.props.cartItems[0].chosenSize.length === 0 ) {
+            if (this.props.cartItems[0].chosenSize.length > 0 ) {
                 sizes.forEach((e) => {
                     e.classList.remove("focus-option")
                 })
@@ -360,6 +224,7 @@ class ProductPage extends Component {
         const { addItem } = this.props;
         const  inStock = item.stock;
         const { chosenSize } = this.state;
+        console.log(this.props.location.state.item.chosenSize.length)
         return (
             <div className="content-area product-single-page">
                 <div className="product-imgs">
@@ -430,7 +295,11 @@ class ProductPage extends Component {
                                                     key={idx}
                                                     id='size-option'
                                                     value={prod.size}
-                                                    onClick={(e) => { this.updateSize(prod, idx, arr); this.errorMessage(prod); this.reFocusSize(prod, idx, e.target.value);}}
+                                                    onClick={(e) => { 
+                                                        this.updateSize(prod, idx, arr); 
+                                                        this.errorMessage(prod); 
+                                                        this.reFocusSize(prod, idx, e.target.value);
+                                                    }}
                                                     className={prod.stock === 0 ? 'inactive-category' : `${prod.size}` }
                                                 >
                                                     {prod.size}

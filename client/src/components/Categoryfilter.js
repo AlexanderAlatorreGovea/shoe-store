@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Categoryfilter extends Component {
     
-
     handleChange = (category) => {
         this.props.onChange(category);
     }

@@ -80,7 +80,7 @@ class domiFilter extends Component {
 
     // // componentWillMount () {
     // //     axios
-    // //         .get(`http://localhost:4000/api/v1/products/${match.params.product}`)
+    // //         .get(`/api/v1/products/${match.params.product}`)
     // //         .then((res, req) => {
 
     // //             this.setState({

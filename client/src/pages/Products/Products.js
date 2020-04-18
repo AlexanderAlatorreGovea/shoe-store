@@ -40,7 +40,7 @@ class Products extends React.Component {
             resetBoxes: false,
             showError: false
         };
-    };
+    }; 
 
     componentDidMount () {
         axios
@@ -81,9 +81,10 @@ class Products extends React.Component {
         } else {
             this.selectedCheckboxes.add(label);
         }
-    }
-
+    } 
+ 
     createCheckbox = label => {
+        console.log(label)
         return (
             <Checkbox 
                 label={label}

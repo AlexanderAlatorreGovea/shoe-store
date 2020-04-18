@@ -115,8 +115,8 @@ header{
               color: #484c4f; 
             }
           }
-      }
-      .cart-link{ 
+      } 
+      .cart-link { 
         background: #484c4f;
         color: white;
         padding: 10px 20px;
@@ -148,3 +148,12 @@ header{
       }
     }
   }
+
+.active-cart-link {
+  background: rgb(202, 32, 32) !important;
+  &:hover {
+    background: red !important;
+    color: white;
+  }
+}
+
