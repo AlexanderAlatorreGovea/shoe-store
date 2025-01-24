@@ -51,6 +51,15 @@ app.use(morgan('dev'));
 //   });
 // }
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client', 'build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //BODY PARSER OR READING DATA FROM THE BODY INTO REQ.BODY
@@ -85,7 +94,7 @@ app.post('/payment', (req, res) => {
   });
 });
 
-if (process.env.NODE_ENV = 'development') {
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
